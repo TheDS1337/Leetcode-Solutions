@@ -3,21 +3,14 @@ int removeDuplicates(int *nums, int numsSize)
     if( numsSize == 0 ) 
         return 0;
 
-    int i, j, max = nums[0], max_index = 0;
+    int i, j, val;
 
-    for( i = 0; i < numsSize; i++ ) {
-        for( j = i + 1; j < numsSize; j++ ) {
-            if( nums[j] > nums[i] ) {
-                nums[i + 1] = nums[j];
-                break;
-            }
-        }
+    for( i = 1, j = 1; i < numsSize; i++ ) {
+        val = nums[i];
 
-        if( nums[i] > max ) {
-            max = nums[i];
-            max_index = i;
-        }
+        if( val != nums[i - 1] )
+            nums[j++] = val;
     }
 
-    return max_index + 1;
+    return j;
 }
